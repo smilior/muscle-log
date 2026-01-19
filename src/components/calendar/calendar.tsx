@@ -188,9 +188,11 @@ export function Calendar({
             <Link
               key={day}
               href={`/session/${dateKey}`}
+              prefetch={true}
               className={cn(
-                "aspect-square flex flex-col items-center justify-center rounded-lg text-sm transition-all",
-                "hover:scale-105 hover:shadow-sm",
+                "aspect-square flex flex-col items-center justify-center rounded-lg text-sm",
+                "transition-transform duration-100 ease-out",
+                "hover:scale-105 active:scale-95",
                 isToday && "ring-2 ring-primary ring-offset-2",
                 isRestDay && "bg-muted/50 hover:bg-muted",
                 !isRestDay && intensityColors[intensity]

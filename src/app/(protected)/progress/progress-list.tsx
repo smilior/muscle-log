@@ -119,8 +119,8 @@ export function ProgressList({ exercises }: Props) {
       {exercisesWithData.length > 0 && (
         <div className="space-y-3">
           {exercisesWithData.map((ex) => (
-            <Link key={ex.id} href={`/progress/${ex.id}`}>
-              <Card className="hover:bg-muted/50 transition-colors">
+            <Link key={ex.id} href={`/progress/${ex.id}`} prefetch={true}>
+              <Card className="hover:bg-muted/50 active:scale-[0.99] transition-all duration-100">
                 <CardContent className="py-3 px-4">
                   <div className="flex items-center gap-3">
                     <div className="shrink-0">

@@ -49,8 +49,8 @@ export default async function SettingsPage() {
           マスタ設定
         </h2>
 
-        <Link href="/exercises">
-          <Card className="hover:bg-muted/50 transition-colors">
+        <Link href="/exercises" prefetch={true}>
+          <Card className="hover:bg-muted/50 active:scale-[0.99] transition-all duration-100">
             <CardContent className="py-3 px-4">
               <div className="flex items-center gap-3">
                 <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -68,8 +68,8 @@ export default async function SettingsPage() {
           </Card>
         </Link>
 
-        <Link href="/presets">
-          <Card className="hover:bg-muted/50 transition-colors">
+        <Link href="/presets" prefetch={true}>
+          <Card className="hover:bg-muted/50 active:scale-[0.99] transition-all duration-100">
             <CardContent className="py-3 px-4">
               <div className="flex items-center gap-3">
                 <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">

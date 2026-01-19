@@ -42,8 +42,10 @@ export function BottomTabs() {
               <Link
                 key={tab.href}
                 href={tab.href}
+                prefetch={true}
                 className={cn(
-                  "flex flex-1 flex-col items-center gap-1 py-2 text-xs transition-colors",
+                  "flex flex-1 flex-col items-center gap-1 py-2 text-xs",
+                  "transition-all duration-100 ease-out active:scale-95 active:opacity-70",
                   isActive
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"

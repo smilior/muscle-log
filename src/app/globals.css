@@ -123,3 +123,35 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Mobile tap responsiveness improvements */
+@layer base {
+  /* Remove 300ms tap delay on mobile */
+  html {
+    touch-action: manipulation;
+  }
+
+  /* Faster tap feedback for interactive elements */
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Active state feedback for better tactile response */
+  button:active:not(:disabled),
+  [role="button"]:active:not(:disabled) {
+    transform: scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+
+  /* Card tap feedback */
+  .card-interactive:active {
+    transform: scale(0.99);
+    transition: transform 0.1s ease-out;
+  }
+}

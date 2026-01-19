@@ -117,11 +117,11 @@ export function ProgressList({ exercises }: Props) {
 
       {/* Exercise list with data */}
       {exercisesWithData.length > 0 && (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {exercisesWithData.map((ex) => (
             <Link key={ex.id} href={`/progress/${ex.id}`}>
               <Card className="hover:bg-muted/50 transition-colors">
-                <CardContent className="p-4">
+                <CardContent className="py-3 px-4">
                   <div className="flex items-center gap-3">
                     <div className="shrink-0">
                       {ex.type === "strength" ? (
@@ -152,13 +152,13 @@ export function ProgressList({ exercises }: Props) {
 
       {/* Exercise list without data */}
       {exercisesWithoutData.length > 0 && (
-        <div className="space-y-2">
+        <div className="space-y-3">
           <h3 className="text-sm font-medium text-muted-foreground">
             記録なし
           </h3>
           {exercisesWithoutData.map((ex) => (
             <Card key={ex.id} className="opacity-60">
-              <CardContent className="p-4">
+              <CardContent className="py-3 px-4">
                 <div className="flex items-center gap-3">
                   <div className="shrink-0">
                     {ex.type === "strength" ? (

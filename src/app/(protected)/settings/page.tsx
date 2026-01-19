@@ -17,23 +17,23 @@ export default async function SettingsPage() {
 
       {/* User info */}
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="py-3 px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               {session?.user.image ? (
                 <img
                   src={session.user.image}
                   alt=""
-                  className="size-12 rounded-full"
+                  className="size-10 rounded-full"
                 />
               ) : (
-                <div className="size-12 rounded-full bg-muted flex items-center justify-center">
-                  <User className="size-6 text-muted-foreground" />
+                <div className="size-10 rounded-full bg-muted flex items-center justify-center">
+                  <User className="size-5 text-muted-foreground" />
                 </div>
               )}
               <div>
-                <div className="font-medium">{session?.user.name}</div>
-                <div className="text-sm text-muted-foreground">
+                <div className="font-medium text-sm">{session?.user.name}</div>
+                <div className="text-xs text-muted-foreground">
                   {session?.user.email}
                 </div>
               </div>
@@ -44,25 +44,25 @@ export default async function SettingsPage() {
       </Card>
 
       {/* Master settings */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <h2 className="text-sm font-medium text-muted-foreground px-1">
           マスタ設定
         </h2>
 
         <Link href="/exercises">
           <Card className="hover:bg-muted/50 transition-colors">
-            <CardContent className="p-4">
+            <CardContent className="py-3 px-4">
               <div className="flex items-center gap-3">
-                <div className="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Dumbbell className="size-5 text-primary" />
+                <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Dumbbell className="size-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <div className="font-medium">種目マスタ</div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="font-medium text-sm">種目マスタ</div>
+                  <div className="text-xs text-muted-foreground">
                     トレーニング種目の追加・編集
                   </div>
                 </div>
-                <ChevronRight className="size-5 text-muted-foreground" />
+                <ChevronRight className="size-4 text-muted-foreground" />
               </div>
             </CardContent>
           </Card>
@@ -70,18 +70,18 @@ export default async function SettingsPage() {
 
         <Link href="/presets">
           <Card className="hover:bg-muted/50 transition-colors">
-            <CardContent className="p-4">
+            <CardContent className="py-3 px-4">
               <div className="flex items-center gap-3">
-                <div className="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <ListChecks className="size-5 text-primary" />
+                <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <ListChecks className="size-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <div className="font-medium">プリセット</div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="font-medium text-sm">プリセット</div>
+                  <div className="text-xs text-muted-foreground">
                     トレーニングメニューのテンプレート
                   </div>
                 </div>
-                <ChevronRight className="size-5 text-muted-foreground" />
+                <ChevronRight className="size-4 text-muted-foreground" />
               </div>
             </CardContent>
           </Card>

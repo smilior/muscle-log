@@ -18,7 +18,10 @@ export function SignInButton() {
 
   if (session) {
     return (
-      <Button variant="outline" onClick={() => signOut()}>
+      <Button
+        variant="outline"
+        onClick={() => signOut({ fetchOptions: { onSuccess: () => window.location.href = "/login" } })}
+      >
         <LogOut className="mr-2 size-4" />
         ログアウト
       </Button>
@@ -26,7 +29,11 @@ export function SignInButton() {
   }
 
   return (
-    <Button onClick={() => signIn.social({ provider: "google" })}>
+    <Button
+      onClick={() =>
+        signIn.social({ provider: "google", callbackURL: "/dashboard" })
+      }
+    >
       <LogIn className="mr-2 size-4" />
       Googleでログイン
     </Button>

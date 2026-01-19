@@ -20,7 +20,7 @@ export function SignInButton() {
     return (
       <Button
         variant="outline"
-        onClick={() => signOut({ fetchOptions: { onSuccess: () => window.location.href = "/login" } })}
+        onClick={() => signOut({ fetchOptions: { onSuccess: () => { window.location.href = "/login"; } } })}
       >
         <LogOut className="mr-2 size-4" />
         ログアウト

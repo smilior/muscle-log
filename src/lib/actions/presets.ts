@@ -108,6 +108,39 @@ export async function addExerciseToPreset(presetId: string, exerciseId: string) 
   revalidatePath(`/presets/${presetId}`);
 }
 
+export async function addExercisesToPreset(presetId: string, exerciseIds: string[]) {
+  const user = await getUser();
+
+  // Verify preset ownership
+  const p = await db.query.preset.findFirst({
+    where: and(eq(preset.id, presetId), eq(preset.userId, user.id)),
+    with: { exercises: true },
+  });
+  if (!p) throw new Error("Preset not found");
+
+  let nextOrder = p.exercises.length;
+
+  for (const exerciseId of exerciseIds) {
+    // Check if already in preset
+    const exists = p.exercises.some((pe) => pe.exerciseId === exerciseId);
+    if (exists) continue;
+
+    // Verify exercise ownership
+    const ex = await db.query.exercise.findFirst({
+      where: and(eq(exercise.id, exerciseId), eq(exercise.userId, user.id)),
+    });
+    if (!ex) continue;
+
+    await db.insert(presetExercise).values({
+      presetId,
+      exerciseId,
+      order: nextOrder++,
+    });
+  }
+
+  revalidatePath(`/presets/${presetId}`);
+}
+
 export async function removeExerciseFromPreset(presetExerciseId: string) {
   const user = await getUser();
 

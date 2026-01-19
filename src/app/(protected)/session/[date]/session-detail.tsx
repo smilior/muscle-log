@@ -12,6 +12,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Spinner } from "@/components/ui/spinner";
 import { ExerciseCard } from "@/components/session/exercise-card";
 import { ExercisePicker } from "@/components/exercise-picker";
@@ -24,8 +35,9 @@ import {
   updateSet,
   removeSet,
   updateSessionExercise,
+  deleteSession,
 } from "@/lib/actions/sessions";
-import { ArrowLeft, Plus, Dumbbell, LayoutTemplate } from "lucide-react";
+import { ArrowLeft, Plus, Dumbbell, LayoutTemplate, Trash2 } from "lucide-react";
 
 type ExerciseSet = {
   id: string;
@@ -107,7 +119,20 @@ export function SessionDetail({
   const [presetOpen, setPresetOpen] = useState(false);
   const [isApplyingPreset, startPresetTransition] = useTransition();
   const [isAddingExercise, startAddExerciseTransition] = useTransition();
+  const [isDeleting, startDeleteTransition] = useTransition();
   const [applyingPresetId, setApplyingPresetId] = useState<string | null>(null);
+
+  const handleDeleteSession = () => {
+    startDeleteTransition(async () => {
+      try {
+        await deleteSession(date);
+        toast.success("セッションを削除しました");
+        router.push("/dashboard");
+      } catch {
+        toast.error("削除に失敗しました");
+      }
+    });
+  };
 
   const handleApplyPreset = async (presetId: string) => {
     setApplyingPresetId(presetId);
@@ -215,6 +240,37 @@ export function SessionDetail({
             </p>
           )}
         </div>
+        {session && (
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="ghost" size="icon" disabled={isDeleting}>
+                {isDeleting ? (
+                  <Spinner size="sm" />
+                ) : (
+                  <Trash2 className="size-5 text-muted-foreground" />
+                )}
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>セッションを削除</AlertDialogTitle>
+                <AlertDialogDescription>
+                  {formatDate(date)}のトレーニング記録をすべて削除しますか？
+                  この操作は取り消せません。
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>キャンセル</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={handleDeleteSession}
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                >
+                  削除
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
       </div>
 
       {/* Preset selection */}

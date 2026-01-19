@@ -415,3 +415,22 @@ export async function removeSet(setId: string) {
   await db.delete(exerciseSet).where(eq(exerciseSet.id, setId));
   revalidatePath(`/session/${set.sessionExercise.session.date}`);
 }
+
+export async function deleteSession(date: string) {
+  const user = await getUser();
+
+  const session = await db.query.workoutSession.findFirst({
+    where: and(
+      eq(workoutSession.userId, user.id),
+      eq(workoutSession.date, date)
+    ),
+  });
+
+  if (!session) {
+    throw new Error("Session not found");
+  }
+
+  await db.delete(workoutSession).where(eq(workoutSession.id, session.id));
+  revalidatePath(`/session/${date}`);
+  revalidatePath("/dashboard");
+}

@@ -175,7 +175,7 @@ export function MediaGallery({ sessionExerciseId, media }: Props) {
         </div>
       )}
 
-      {/* Upload button */}
+      {/* Upload button - temporarily hidden
       <div className="flex gap-2">
         <input
           ref={fileInputRef}
@@ -204,6 +204,7 @@ export function MediaGallery({ sessionExerciseId, media }: Props) {
           )}
         </Button>
       </div>
+      */}
 
       {/* Lightbox */}
       {selectedMedia && (

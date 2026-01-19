@@ -154,12 +154,14 @@ export function ExerciseCard({
               {allSetsComplete && se.sets.length > 0 && (
                 <Check className="size-4 text-green-600" />
               )}
+              {/* Media icon - temporarily hidden
               {se.media.length > 0 && (
                 <span className="flex items-center gap-0.5 text-xs text-muted-foreground">
                   <ImageIcon className="size-3" />
                   {se.media.length}
                 </span>
               )}
+              */}
               {videos.length > 0 && (
                 <Youtube className="size-4 text-red-500" />
               )}
@@ -339,13 +341,16 @@ export function ExerciseCard({
               </div>
             )}
 
-            {/* Media Gallery */}
-            <div className="pt-2 border-t">
-              <MediaGallery
-                sessionExerciseId={se.id}
-                media={se.media}
-              />
-            </div>
+            {/* Media Gallery - temporarily hidden
+            {se.media.length > 0 && (
+              <div className="pt-2 border-t">
+                <MediaGallery
+                  sessionExerciseId={se.id}
+                  media={se.media}
+                />
+              </div>
+            )}
+            */}
           </CardContent>
         )}
       </Card>

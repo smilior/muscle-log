@@ -358,7 +358,7 @@ export function ExerciseCard({
       {/* YouTube Video Modal */}
       {playingVideo && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4"
           onClick={() => setPlayingVideo(null)}
         >
           <Button

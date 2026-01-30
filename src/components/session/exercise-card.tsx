@@ -77,7 +77,7 @@ function getRpeColor(rpe: number | null): string {
 
 function getYouTubeVideoId(url: string): string | null {
   const match = url.match(
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+    /(?:youtu\.be\/|youtube\.com\/(?:embed|v|shorts|live)\/|youtube\.com\/.*[?&]v=)([a-zA-Z0-9_-]{11})/
   );
   return match ? match[1] : null;
 }

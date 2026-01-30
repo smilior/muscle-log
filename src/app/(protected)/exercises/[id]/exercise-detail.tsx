@@ -78,7 +78,7 @@ export function ExerciseDetail({ exercise }: Props) {
 
   const getYoutubeEmbedUrl = (url: string) => {
     const match = url.match(
-      /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+      /(?:youtu\.be\/|youtube\.com\/(?:embed|v|shorts|live)\/|youtube\.com\/.*[?&]v=)([a-zA-Z0-9_-]{11})/
     );
     return match ? `https://www.youtube.com/embed/${match[1]}` : null;
   };
